@@ -1,0 +1,25 @@
+Rede treinada:
+log/Gradient_Boosting_4_0.pkl
+
+Tempo de treinamento:
+31723.00s
+
+Configuração do classificador:
+GradientBoostingClassifier(criterion='friedman_mse', init=None,
+              learning_rate=0.1, loss='deviance', max_depth=8,
+              max_features=None, max_leaf_nodes=None,
+              min_impurity_decrease=0.0, min_impurity_split=None,
+              min_samples_leaf=1, min_samples_split=2,
+              min_weight_fraction_leaf=0.0, n_estimators=100,
+              presort='auto', random_state=42, subsample=0.8, verbose=1,
+              warm_start=False)
+
+Metricas do classificador:
+Score: 0.6949300609461556
+Accuracy: [0.68634766 0.68208306 0.68799334]
+average_precision: [0.53305203 0.52768406 0.53369752]
+precision: [0.5780617  0.56685237 0.58308395]
+recall: [0.33199105 0.32778523 0.33130481]
+roc_auc: [0.6994433  0.69263705 0.70147231]
+---------------------------------------------------------
+
