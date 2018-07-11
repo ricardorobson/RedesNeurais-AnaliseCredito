@@ -23,3 +23,28 @@ recall: [0.25789709 0.26675615 0.274029  ]
 roc_auc: [0.70978868 0.6999893  0.70712006]
 ---------------------------------------------------------
 
+Rede treinada:
+log/Gradient_Boosting_2_1.pkl
+
+Tempo de treinamento:
+8195.92s
+
+Configuração do classificador:
+GradientBoostingClassifier(criterion='friedman_mse', init=None,
+              learning_rate=0.1, loss='deviance', max_depth=3,
+              max_features=None, max_leaf_nodes=None,
+              min_impurity_decrease=0.0, min_impurity_split=None,
+              min_samples_leaf=1, min_samples_split=2,
+              min_weight_fraction_leaf=0.0, n_estimators=100,
+              presort='auto', random_state=42, subsample=0.6, verbose=1,
+              warm_start=False)
+
+Metricas do classificador:
+Score: 0.6871910297125355
+Accuracy: [0.68741714 0.69019209 0.68923627]
+average_precision: [0.80878132 0.80742374 0.81061329]
+precision: [0.70038925 0.70466662 0.70314374]
+recall: [0.91414997 0.90779942 0.91010443]
+roc_auc: [0.70488701 0.70458655 0.70431318]
+---------------------------------------------------------
+

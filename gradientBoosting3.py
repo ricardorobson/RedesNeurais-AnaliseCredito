@@ -44,8 +44,8 @@ def dividir(answerAll=42):
     data_set.drop_duplicates(inplace=True)  # Remove exemplos repetidos
 
     # Também convertemos os dados para arrays ao invés de DataFrames
-    X = data_set.iloc[:, :-2].values
-    y = data_set.iloc[:, -1].values
+    X = data_set.iloc[:, :-3].values
+    y = data_set.iloc[:, -2].values
  
     # Treino: 50%, Validação: 25%, Teste: 25%
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/4, 
