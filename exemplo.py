@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.svm import LinearSVC
 from sklearn.externals import joblib
-from imblearn.over_sampling import SMOTE, ADASYN
+from imblearn.over_sampling import SMOTE, ADASYN, RandomOverSampler
 
 import os.path as path
 import numpy as np
@@ -35,13 +35,13 @@ def gradientBoosting(state=42):
 
 def randomForest(state=42):
     randomForestClassifier = RandomForestClassifier(
-        n_estimators=10, 
-        criterion='gini', 
+        n_estimators=50, 
+        criterion='entropy', 
         max_depth=None, 
-        min_samples_split=2, 
-        min_samples_leaf=1, 
+        min_samples_split=5, 
+        min_samples_leaf=5, 
         min_weight_fraction_leaf=0.0, 
-        max_features='auto', 
+        max_features=None, 
         max_leaf_nodes=None, 
         min_impurity_decrease=0.0, 
         min_impurity_split=None, 
@@ -93,8 +93,13 @@ def dividir(answerAll=42):
     data_set.drop_duplicates(inplace=True)  # Remove exemplos repetidos
 
     # Também convertemos os dados para arrays ao invés de DataFrames
-    X = data_set.iloc[:, :-2].values
-    y = data_set.iloc[:, -1].values
+    # X = data_set.iloc[:, :-3].values
+    # y = data_set.iloc[:, -1].values
+
+    # Separando features e target para criação do modelo
+    X = data_set.drop(['INDEX', 'IND_BOM_1_1', 'IND_BOM_1_2'], axis=1)
+    y = data_set['IND_BOM_1_1']
+
  
     # Treino: 50%, Validação: 25%, Teste: 25%
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/4, 
@@ -104,7 +109,10 @@ def dividir(answerAll=42):
 
     # train_test_split(y, shuffle=False)
 
-    X_resampled, y_resampled = SMOTE(kind='borderline1').fit_sample(X_train, y_train)
+    # X_resampled, y_resampled = SMOTE(kind='borderline1').fit_sample(X_train, y_train)
+
+    ros = RandomOverSampler(random_state=answerAll)
+    X_resampled, y_resampled = ros.fit_sample(X_train, y_train)
 
     return (X_resampled, y_resampled, X_test, y_test)
 
@@ -193,10 +201,10 @@ def main():
     else:
         
         # classificadores
-        # classifier, name = gradientBoosting(answerAll)
+        classifier, name = gradientBoosting(answerAll)
         # classifier, name = randomForest(answerAll)
         # classifier, name = svm(answerAll)
-        classifier, name = mlp(answerAll)
+        # classifier, name = mlp(answerAll)
         
         # treinar o modelo
         classifier.fit(X_train, y_train)
